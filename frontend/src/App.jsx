@@ -110,7 +110,7 @@ function MainSite() {
                         
                       </p>
                       <p className="text-lg text-muted-foreground leading-relaxed">
-                        I created ZephWrites as a means for me to share my thoughts, experiences, and general ideas with my to community to inspire others in the subtle, not so noticable ways.
+                        I created ZephWrites as a means for me to share my thoughts, experiences, and general ideas with my community to inspire others in the subtle, not so noticable ways.
                         If you like what you read, reach out and say hi!
                       </p>
                       <div className="flex flex-wrap gap-3">
