@@ -1,0 +1,154 @@
+/* ZephWrites Blog Styles */
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: var(--font-playfair);
+}
+
+/* Global font application */
+* {
+  font-family: inherit;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em hsl(var(--primary) / 0.5));
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em hsl(var(--accent) / 0.5));
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.read-the-docs {
+  color: var(--muted-foreground);
+}
+
+/* Blog specific styles */
+.blog-title {
+  font-family: var(--font-playfair);
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.blog-subtitle {
+  font-family: var(--font-playfair);
+  color: var(--muted-foreground);
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.content-area {
+  font-family: var(--font-playfair);
+  line-height: 1.7;
+  color: var(--foreground);
+}
+
+/* Hero Section with Silk Background */
+.hero-silk {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-silk .blog-title {
+  background: linear-gradient(135deg, #1e293b, #475569);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.hero-silk .blog-subtitle {
+  color: rgba(55, 65, 81, 0.95);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Animate the silk background flow */
+@keyframes silk-flow {
+  0% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+  100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+.silk-container {
+  animation: silk-flow 8s ease-in-out infinite;
+}
+
+.silk-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Enhanced button styling for silk theme */
+.hero-silk button {
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.hero-silk button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced homepage sections */
+.featured-card {
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+
+.featured-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Improved spacing and typography */
+.stats-section {
+  background: linear-gradient(135deg, rgba(var(--primary), 0.1), rgba(var(--accent), 0.1));
+}
+
+/* Custom gradients for content sections */
+.content-gradient {
+  background: linear-gradient(135deg, rgba(var(--primary), 0.05), rgba(var(--accent), 0.05));
+}
