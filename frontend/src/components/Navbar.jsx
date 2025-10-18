@@ -95,7 +95,7 @@ const Navbar = ({
           </div>
           <div className="flex gap-2 items-center">
             <Button asChild size="sm">
-              <a href="#contact">
+              <a href="mailto:zephchizulu@gmail.com">
                 <Mail className="size-4 mr-2" />
                 Contact
               </a>
@@ -150,7 +150,7 @@ const Navbar = ({
 
                     <div className="flex flex-col gap-3">
                       <Button asChild variant="outline">
-                        <a href="#contact">
+                        <a href="mailto:zephchizulu@gmail.com">
                           <Mail className="size-4 mr-2" />
                           Contact Me
                         </a>

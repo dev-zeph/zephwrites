@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { PlusCircle, FileText, Users, BarChart3, Settings, LogOut, Edit, Trash2, Eye } from 'lucide-react'
+import { PlusCircle, FileText, Users, BarChart3, Settings, LogOut, Edit, Trash2, Eye, Mail } from 'lucide-react'
 import AdminPanel from './AdminPanel'
+import EmailTestPanel from './EmailTestPanel'
 import { useBlogs } from '../hooks/useBlog'
 import { blogService } from '../lib/blogService'
 
@@ -91,6 +92,17 @@ const AdminDashboard = ({ onLogout }) => {
               >
                 <FileText className="w-5 h-5" />
                 Posts
+              </button>
+              <button
+                onClick={() => setActiveTab('email')}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${
+                  activeTab === 'email'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                }`}
+              >
+                <Mail className="w-5 h-5" />
+                Email System
               </button>
             </nav>
           </div>
@@ -277,6 +289,15 @@ const AdminDashboard = ({ onLogout }) => {
                     )}
                   </div>
                 </div>
+              </div>
+            )}
+
+            {activeTab === 'email' && (
+              <div>
+                <div className="flex justify-between items-center mb-8">
+                  <h2 className="text-3xl font-bold font-playfair text-foreground">Email System</h2>
+                </div>
+                <EmailTestPanel />
               </div>
             )}
           </div>

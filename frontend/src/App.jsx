@@ -6,6 +6,7 @@ import { Navbar } from './components/Navbar'
 import { ArticlesListing } from './components/ArticlesListing'
 import NewsletterSignup from './components/NewsletterSignup'
 import AdminPage from './pages/AdminPage'
+import UnsubscribePage from './pages/UnsubscribePage'
 import { Footer } from './components/Footer'
 import Silk from './components/Silk'
 
@@ -14,6 +15,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/unsubscribe" element={<UnsubscribePage />} />
         <Route path="/*" element={<MainSite />} />
       </Routes>
     </Router>

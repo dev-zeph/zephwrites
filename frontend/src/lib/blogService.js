@@ -180,11 +180,31 @@ export const blogService = {
       .single()
 
     if (error) throw error
+
+    // Send email notifications if blog is published
+    if (blogData.is_published) {
+      try {
+        const subscribers = await newsletterService.getActiveSubscribers()
+        if (subscribers.length > 0) {
+          const { emailService } = await import('./emailService')
+          await emailService.sendNewBlogNotification(data, subscribers)
+        }
+      } catch (emailError) {
+        console.error('Failed to send blog notifications:', emailError)
+        // Don't throw error here - blog creation was successful
+      }
+    }
+
     return data
   },
 
   // Update an existing blog post
   async updateBlog(id, blogData) {
+    // Check if this is being published for the first time
+    const existingBlog = await this.getBlogById(id)
+    const wasUnpublished = !existingBlog.is_published
+    const isNowPublished = blogData.is_published
+
     const { data, error } = await supabase
       .from('blogs')
       .update({
@@ -196,6 +216,21 @@ export const blogService = {
       .single()
 
     if (error) throw error
+
+    // Send email notifications if blog is being published for the first time
+    if (wasUnpublished && isNowPublished) {
+      try {
+        const subscribers = await newsletterService.getActiveSubscribers()
+        if (subscribers.length > 0) {
+          const { emailService } = await import('./emailService')
+          await emailService.sendNewBlogNotification(data, subscribers)
+        }
+      } catch (emailError) {
+        console.error('Failed to send blog notifications:', emailError)
+        // Don't throw error here - blog update was successful
+      }
+    }
+
     return data
   },
 
@@ -332,6 +367,16 @@ export const newsletterService = {
       }
       throw error
     }
+
+    // Send welcome email
+    try {
+      const { emailService } = await import('./emailService')
+      await emailService.sendWelcomeEmail(email, name)
+    } catch (emailError) {
+      console.error('Failed to send welcome email:', emailError)
+      // Don't throw error here - subscription was successful
+    }
+
     return data
   },
 
@@ -346,6 +391,42 @@ export const newsletterService = {
 
     if (error && error.code !== 'PGRST116') throw error
     return !!data
+  },
+
+  // Get all active subscribers
+  async getActiveSubscribers() {
+    const { data, error } = await supabase
+      .from('newsletter_subscribers')
+      .select('email, name')
+      .eq('is_active', true)
+
+    if (error) throw error
+    return data || []
+  },
+
+  // Unsubscribe a user
+  async unsubscribe(email) {
+    const { error } = await supabase
+      .from('newsletter_subscribers')
+      .update({ 
+        is_active: false,
+        unsubscribed_at: new Date().toISOString()
+      })
+      .eq('email', email)
+
+    if (error) throw error
+    return true
+  },
+
+  // Get subscriber count
+  async getSubscriberCount() {
+    const { count, error } = await supabase
+      .from('newsletter_subscribers')
+      .select('*', { count: 'exact', head: true })
+      .eq('is_active', true)
+
+    if (error) throw error
+    return count || 0
   }
 }
 
