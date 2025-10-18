@@ -16,10 +16,15 @@ const EmailTestPanel = () => {
     try {
       setLoading(true)
       setMessage('')
-      await emailService.sendTestEmail(testEmail)
-      setMessage('Test email sent successfully! Check your inbox.')
+      const result = await emailService.sendTestEmail(testEmail)
+      
+      if (result.success) {
+        setMessage(`✅ ${result.message || 'Test email logged successfully!'}\n\nNext Steps:\n${result.instructions?.join('\n') || 'Set up Supabase Edge Functions for actual email sending.'}`)
+      } else {
+        setMessage('❌ Failed to send test email')
+      }
     } catch (error) {
-      setMessage('Failed to send test email: ' + error.message)
+      setMessage('❌ Failed to send test email: ' + error.message)
     } finally {
       setLoading(false)
     }
@@ -109,14 +114,23 @@ const EmailTestPanel = () => {
 
       {/* Setup Instructions */}
       <div className="bg-muted/30 rounded-lg p-4 text-sm">
-        <h4 className="font-medium mb-2">Setup Instructions:</h4>
-        <ol className="space-y-1 text-muted-foreground">
-          <li>1. Sign up at <a href="https://resend.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">resend.com</a></li>
-          <li>2. Get your API key from the dashboard</li>
-          <li>3. Add it to your .env.local file as VITE_RESEND_API_KEY</li>
-          <li>4. Verify your domain (or use resend.dev for testing)</li>
-          <li>5. Test email functionality using the form above</li>
-        </ol>
+        <h4 className="font-medium mb-2">🚨 Email System Status:</h4>
+        <div className="space-y-2 text-muted-foreground">
+          <p className="text-amber-600 font-medium">⚠️ Currently in Development Mode</p>
+          <p>Emails are being <strong>logged</strong> but not actually sent due to CORS restrictions.</p>
+          
+          <h5 className="font-medium text-foreground mt-3">To Enable Actual Email Sending:</h5>
+          <ol className="space-y-1 ml-4 list-decimal">
+            <li>Run the SQL update: <code className="bg-muted px-1 rounded">013_fix_email_system.sql</code></li>
+            <li>Create a Supabase Edge Function with Resend integration</li>
+            <li>Update the email service to call the Edge Function</li>
+            <li>Deploy and test the function</li>
+          </ol>
+          
+          <p className="mt-3 text-xs">
+            <strong>Current functionality:</strong> Newsletter subscriptions work, emails are logged for tracking.
+          </p>
+        </div>
       </div>
     </div>
   )

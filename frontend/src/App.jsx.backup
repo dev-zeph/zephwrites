@@ -168,12 +168,12 @@ function MainSite() {
                   <div className="text-center mb-16">
                     <h2 className="text-4xl font-bold mb-4">Featured Content</h2>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                      Check out my latest stuff!
+                      Check out my most recent stuff!
                     </p>
                   </div>
                   
                   <div className="w-full max-w-4xl mx-auto">
-                    {/* Featured Article - Most Recent (Full Width) */}
+                    {/* Featured Article - Most Recent */}
                     {loadingFeatured ? (
                       <div className="group bg-white border border-gray-200 rounded-xl p-8 animate-pulse">
                         <div className="flex flex-col md:flex-row gap-8">
@@ -205,59 +205,57 @@ function MainSite() {
                                 className="w-full h-full object-cover rounded-lg"
                               />
                             ) : (
-                              <div className="text-8xl">�</div>
+                              <div className="text-8xl">📝</div>
                             )}
                             <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
                               Latest Article
                             </div>
                           </div>
                           <div className="w-full md:w-1/2 flex flex-col justify-center">
-                            <h3 className="text-3xl font-bold mb-4 group-hover:text-primary transition-colors text-gray-900 leading-tight">
-                              {featuredArticle.title}
-                            </h3>
-                            <p className="text-gray-600 mb-6 text-lg leading-relaxed line-clamp-4">
-                              {featuredArticle.excerpt || featuredArticle.content?.substring(0, 200) + '...'}
-                            </p>
-                            <div className="flex items-center gap-6 text-sm text-gray-500">
-                              <span className="flex items-center gap-1">
-                                <span>⏱️</span>
-                                {featuredArticle.reading_time_minutes || 5} min read
-                              </span>
-                              <span className="flex items-center gap-1">
-                                <span>🏷️</span>
-                                {featuredArticle.blog_topic || 'Article'}
-                              </span>
-                              <span className="flex items-center gap-1">
-                                <span>📅</span>
-                                {new Date(featuredArticle.published_at || featuredArticle.created_at).toLocaleDateString()}
-                              </span>
-                            </div>
+                          {featuredArticle.featured_image_url ? (
+                            <img 
+                              src={featuredArticle.featured_image_url} 
+                              alt={featuredArticle.title}
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          ) : (
+                            <div className="text-6xl">�</div>
+                          )}
+                          <div className="absolute top-2 left-2 bg-primary text-white px-2 py-1 rounded-full text-xs font-medium">
+                            Latest
                           </div>
+                        </div>
+                        <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors text-gray-900">
+                          {featuredArticle.title}
+                        </h3>
+                        <p className="text-gray-600 mb-4 line-clamp-3">
+                          {featuredArticle.excerpt || featuredArticle.content?.substring(0, 120) + '...'}
+                        </p>
+                        <div className="flex items-center justify-between text-sm text-gray-500">
+                          <span>{featuredArticle.reading_time_minutes || 5} min read</span>
+                          <span>{featuredArticle.blog_topic || 'Article'}</span>
+                        </div>
+                        <div className="mt-2 text-xs text-gray-400">
+                          {new Date(featuredArticle.published_at || featuredArticle.created_at).toLocaleDateString()}
                         </div>
                       </div>
                     ) : (
-                      <div className="group bg-white border border-gray-200 rounded-xl p-8">
-                        <div className="flex flex-col md:flex-row gap-8 items-center">
-                          <div className="w-full md:w-1/2 h-64 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
-                            <div className="text-center text-gray-500">
-                              <div className="text-8xl mb-4">📄</div>
-                              <p className="text-lg">No articles yet</p>
-                            </div>
-                          </div>
-                          <div className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left">
-                            <h3 className="text-3xl font-bold mb-4 text-gray-900">
-                              Coming Soon
-                            </h3>
-                            <p className="text-gray-600 mb-6 text-lg">
-                              The first article is being crafted with care. Stay tuned for insightful content that will inspire and inform!
-                            </p>
-                            <p className="text-sm text-gray-500">
-                              Subscribe to be notified when new articles are published.
-                            </p>
+                      <div className="group bg-white border border-gray-200 rounded-xl p-6">
+                        <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                          <div className="text-center text-gray-500">
+                            <div className="text-4xl mb-2">📄</div>
+                            <p className="text-sm">No articles yet</p>
                           </div>
                         </div>
+                        <h3 className="text-xl font-semibold mb-2 text-gray-900">
+                          Coming Soon
+                        </h3>
+                        <p className="text-gray-600 mb-4">
+                          The first article is being crafted. Stay tuned!
+                        </p>
                       </div>
                     )}
+
                   </div>
                 </div>
               </section>
