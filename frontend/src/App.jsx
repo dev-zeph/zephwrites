@@ -7,6 +7,7 @@ import { ArticlesListing } from './components/ArticlesListing'
 import NewsletterSignup from './components/NewsletterSignup'
 import AdminPage from './pages/AdminPage'
 import UnsubscribePage from './pages/UnsubscribePage'
+import FeaturedArticle from './pages/FeaturedArticle'
 import { Footer } from './components/Footer'
 import Silk from './components/Silk'
 import { blogService } from './lib/blogService'
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/unsubscribe" element={<UnsubscribePage />} />
+        <Route path="/featured" element={<FeaturedArticle />} />
         <Route path="/*" element={<MainSite />} />
       </Routes>
     </Router>
@@ -27,31 +29,10 @@ function App() {
 function MainSite() {
   const [currentView, setCurrentView] = useState('home') // 'home' or 'post'
   const [selectedBlog, setSelectedBlog] = useState(null)
-  const [featuredArticle, setFeaturedArticle] = useState(null)
-  const [loadingFeatured, setLoadingFeatured] = useState(true)
 
   // Set light mode as default
   useEffect(() => {
     document.documentElement.className = ''
-  }, [])
-
-  // Fetch the most recent article for featured content
-  useEffect(() => {
-    const fetchFeaturedArticle = async () => {
-      try {
-        setLoadingFeatured(true)
-        const result = await blogService.getPublishedBlogs(1, 1) // Get the most recent article
-        if (result.blogs && result.blogs.length > 0) {
-          setFeaturedArticle(result.blogs[0])
-        }
-      } catch (error) {
-        console.error('Failed to fetch featured article:', error)
-      } finally {
-        setLoadingFeatured(false)
-      }
-    }
-
-    fetchFeaturedArticle()
   }, [])
 
   const handleNavigation = (view) => {
@@ -168,96 +149,50 @@ function MainSite() {
                   <div className="text-center mb-16">
                     <h2 className="text-4xl font-bold mb-4">Featured Content</h2>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                      Check out my latest stuff!
+                      Check out my featured article!
                     </p>
                   </div>
                   
                   <div className="w-full max-w-4xl mx-auto">
-                    {/* Featured Article - Most Recent (Full Width) */}
-                    {loadingFeatured ? (
-                      <div className="group bg-white border border-gray-200 rounded-xl p-8 animate-pulse">
-                        <div className="flex flex-col md:flex-row gap-8">
-                          <div className="w-full md:w-1/2 h-64 bg-gray-200 rounded-lg"></div>
-                          <div className="w-full md:w-1/2 flex flex-col justify-center">
-                            <div className="h-8 bg-gray-200 rounded mb-4"></div>
-                            <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                            <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                            <div className="h-4 bg-gray-200 rounded mb-6 w-3/4"></div>
-                            <div className="flex items-center gap-4">
-                              <div className="h-3 bg-gray-200 rounded w-20"></div>
-                              <div className="h-3 bg-gray-200 rounded w-16"></div>
-                              <div className="h-3 bg-gray-200 rounded w-24"></div>
-                            </div>
+                    <div 
+                      className="group bg-white border border-gray-200 rounded-xl p-8 hover:shadow-xl hover:border-gray-300 transition-all duration-300 cursor-pointer"
+                      onClick={() => window.location.href = '/featured'}
+                    >
+                      <div className="flex flex-col md:flex-row gap-8 items-center">
+                        <div className="w-full md:w-1/2 h-64 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center relative overflow-hidden">
+                          <img 
+                            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                            alt="Identification Through Differentiation"
+                            className="w-full h-full object-cover rounded-lg"
+                          />
+                          <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Featured Article
+                          </div>
+                        </div>
+                        <div className="w-full md:w-1/2 flex flex-col justify-center">
+                          <h3 className="text-3xl font-bold mb-4 group-hover:text-primary transition-colors text-gray-900 leading-tight">
+                            Identification Through Differentiation
+                          </h3>
+                          <p className="text-gray-600 mb-6 text-lg leading-relaxed line-clamp-4">
+                            Understanding who you are requires being surrounded by what you are not. A reflection on emotional intelligence and finding your unique strengths.
+                          </p>
+                          <div className="flex items-center gap-6 text-sm text-gray-500">
+                            <span className="flex items-center gap-1">
+                              <span>⏱️</span>
+                              4 min read
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <span>📅</span>
+                              {new Date().toLocaleDateString()}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <span>🏷️</span>
+                              Personal Growth
+                            </span>
                           </div>
                         </div>
                       </div>
-                    ) : featuredArticle ? (
-                      <div 
-                        className="group bg-white border border-gray-200 rounded-xl p-8 hover:shadow-xl hover:border-gray-300 transition-all duration-300 cursor-pointer"
-                        onClick={() => handleSelectPost(featuredArticle)}
-                      >
-                        <div className="flex flex-col md:flex-row gap-8 items-center">
-                          <div className="w-full md:w-1/2 h-64 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center relative overflow-hidden">
-                            {featuredArticle.featured_image_url ? (
-                              <img 
-                                src={featuredArticle.featured_image_url} 
-                                alt={featuredArticle.title}
-                                className="w-full h-full object-cover rounded-lg"
-                              />
-                            ) : (
-                              <div className="text-8xl">�</div>
-                            )}
-                            <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                              Latest Article
-                            </div>
-                          </div>
-                          <div className="w-full md:w-1/2 flex flex-col justify-center">
-                            <h3 className="text-3xl font-bold mb-4 group-hover:text-primary transition-colors text-gray-900 leading-tight">
-                              {featuredArticle.title}
-                            </h3>
-                            <p className="text-gray-600 mb-6 text-lg leading-relaxed line-clamp-4">
-                              {featuredArticle.excerpt || featuredArticle.content?.substring(0, 200) + '...'}
-                            </p>
-                            <div className="flex items-center gap-6 text-sm text-gray-500">
-                              <span className="flex items-center gap-1">
-                                <span>⏱️</span>
-                                {featuredArticle.reading_time_minutes || 5} min read
-                              </span>
-                              <span className="flex items-center gap-1">
-                                <span>🏷️</span>
-                                {featuredArticle.blog_topic || 'Article'}
-                              </span>
-                              <span className="flex items-center gap-1">
-                                <span>📅</span>
-                                {new Date(featuredArticle.published_at || featuredArticle.created_at).toLocaleDateString()}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="group bg-white border border-gray-200 rounded-xl p-8">
-                        <div className="flex flex-col md:flex-row gap-8 items-center">
-                          <div className="w-full md:w-1/2 h-64 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
-                            <div className="text-center text-gray-500">
-                              <div className="text-8xl mb-4">📄</div>
-                              <p className="text-lg">No articles yet</p>
-                            </div>
-                          </div>
-                          <div className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left">
-                            <h3 className="text-3xl font-bold mb-4 text-gray-900">
-                              Coming Soon
-                            </h3>
-                            <p className="text-gray-600 mb-6 text-lg">
-                              The first article is being crafted with care. Stay tuned for insightful content that will inspire and inform!
-                            </p>
-                            <p className="text-sm text-gray-500">
-                              Subscribe to be notified when new articles are published.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                    </div>
                   </div>
                 </div>
               </section>
