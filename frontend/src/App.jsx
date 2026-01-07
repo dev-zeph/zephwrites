@@ -161,7 +161,7 @@ function MainSite() {
                       <div className="flex flex-col md:flex-row gap-8 items-center">
                         <div className="w-full md:w-1/2 h-64 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center relative overflow-hidden">
                           <img 
-                            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                            src="Different.jpg"
                             alt="Identification Through Differentiation"
                             className="w-full h-full object-cover rounded-lg"
                           />
