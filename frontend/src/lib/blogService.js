@@ -346,6 +346,46 @@ export const commentService = {
   }
 }
 
+// Featured Article Comment Services
+export const featuredCommentService = {
+  async getComments(articleSlug) {
+    const { data, error } = await supabase
+      .from('featured_article_comments')
+      .select('*')
+      .eq('article_slug', articleSlug)
+      .eq('status', 'approved')
+      .order('created_at', { ascending: true })
+
+    if (error) throw error
+    return data || []
+  },
+
+  async addComment(articleSlug, authorName, authorEmail, content, parentId = null) {
+    if (!articleSlug || !authorName || !authorEmail || !content) {
+      throw new Error('Missing required comment data')
+    }
+
+    const { data, error } = await supabase
+      .from('featured_article_comments')
+      .insert({
+        article_slug: articleSlug,
+        parent_id: parentId,
+        author_name: authorName.trim(),
+        author_email: authorEmail.trim(),
+        content: content.trim(),
+        status: 'approved'
+      })
+      .select()
+      .single()
+
+    if (error) {
+      console.error('Featured comment insertion error:', error)
+      throw error
+    }
+    return data
+  }
+}
+
 // Newsletter Services
 export const newsletterService = {
   // Subscribe to newsletter

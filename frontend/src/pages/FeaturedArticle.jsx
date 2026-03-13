@@ -1,11 +1,144 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, Calendar, Clock, User, Share2 } from 'lucide-react'
+import { ArrowLeft, Calendar, Clock, User, Share2, MessageCircle, Loader2 } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { Footer } from '../components/Footer'
+import { featuredCommentService } from '../lib/blogService'
+
+const ARTICLE_SLUG = 'true-leadership'
 
 const FeaturedArticle = () => {
   const navigate = useNavigate()
+
+  const [comments, setComments] = useState([])
+  const [commentsLoading, setCommentsLoading] = useState(true)
+  const [commentForm, setCommentForm] = useState({
+    author_name: '',
+    author_email: '',
+    content: '',
+    parent_id: null
+  })
+  const [replyingTo, setReplyingTo] = useState(null)
+  const [submitting, setSubmitting] = useState(false)
+
+  const fetchComments = async () => {
+    try {
+      setCommentsLoading(true)
+      const data = await featuredCommentService.getComments(ARTICLE_SLUG)
+      setComments(data)
+    } catch (err) {
+      console.error('Error fetching comments:', err)
+    } finally {
+      setCommentsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchComments()
+  }, [])
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault()
+
+    if (!commentForm.author_name || !commentForm.author_email || !commentForm.content) {
+      alert('Please fill in all fields')
+      return
+    }
+
+    try {
+      setSubmitting(true)
+      await featuredCommentService.addComment(
+        ARTICLE_SLUG,
+        commentForm.author_name,
+        commentForm.author_email,
+        commentForm.content,
+        commentForm.parent_id
+      )
+
+      setCommentForm({ author_name: '', author_email: '', content: '', parent_id: null })
+      setReplyingTo(null)
+      alert('Comment posted successfully!')
+
+      setTimeout(() => fetchComments(), 500)
+    } catch (error) {
+      console.error('Error submitting comment:', error)
+      alert('Failed to post comment. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const handleReply = (commentId, authorName) => {
+    setReplyingTo({ id: commentId, author: authorName })
+    setCommentForm(prev => ({ ...prev, parent_id: commentId }))
+    document.getElementById('comment-form')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  }
+
+  const organizeComments = (comments) => {
+    const commentMap = {}
+    const rootComments = []
+
+    comments.forEach(comment => {
+      commentMap[comment.id] = { ...comment, replies: [] }
+    })
+
+    comments.forEach(comment => {
+      if (comment.parent_id && commentMap[comment.parent_id]) {
+        commentMap[comment.parent_id].replies.push(commentMap[comment.id])
+      } else {
+        rootComments.push(commentMap[comment.id])
+      }
+    })
+
+    return rootComments
+  }
+
+  const organizedComments = organizeComments(comments)
+
+  const CommentComponent = ({ comment, level = 0 }) => (
+    <div className={`${level > 0 ? 'ml-8 border-l border-border pl-4' : ''} mb-6`}>
+      <div className="border-l-4 border-primary pl-4 py-2">
+        <div className="flex items-start gap-3 mb-3">
+          <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-primary-foreground font-semibold text-sm">
+            {comment.author_name.slice(0, 2).toUpperCase()}
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="font-medium text-foreground">{comment.author_name}</span>
+              <span className="text-xs text-muted-foreground">
+                {formatDate(comment.created_at)}
+              </span>
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {comment.content}
+            </p>
+            <button
+              onClick={() => handleReply(comment.id, comment.author_name)}
+              className="text-xs text-primary hover:underline mt-2"
+            >
+              Reply
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {comment.replies && comment.replies.length > 0 && (
+        <div className="mt-4">
+          {comment.replies.map(reply => (
+            <CommentComponent key={reply.id} comment={reply} level={level + 1} />
+          ))}
+        </div>
+      )}
+    </div>
+  )
 
   const handleBack = () => {
     navigate('/')
@@ -20,7 +153,7 @@ const FeaturedArticle = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar onNavigation={handleNavigation} />
-      
+
       <main className="flex-1 bg-background">
         <div className="container mx-auto px-6 py-12 max-w-4xl">
           <button
@@ -177,9 +310,117 @@ const FeaturedArticle = () => {
               </div>
             </div>
           </div>
+
+          {/* Discussion Section */}
+          <div className="mt-16 border-t border-border pt-12">
+            <h3 className="text-2xl font-bold mb-6 font-playfair text-foreground">
+              Join the Discussion
+            </h3>
+            <p className="text-muted-foreground mb-8">
+              Share your thoughts, questions, or feedback about this article. Let's start a conversation!
+            </p>
+
+            {/* Comment Form */}
+            <div id="comment-form" className="bg-muted/50 rounded-lg p-6 mb-8">
+              {replyingTo && (
+                <div className="bg-secondary/50 rounded-lg p-3 mb-4">
+                  <p className="text-sm text-muted-foreground">
+                    Replying to <span className="font-medium">{replyingTo.author}</span>
+                  </p>
+                  <button
+                    onClick={() => {
+                      setReplyingTo(null)
+                      setCommentForm(prev => ({ ...prev, parent_id: null }))
+                    }}
+                    className="text-sm text-primary hover:text-primary/80 mt-1"
+                  >
+                    Cancel reply
+                  </button>
+                </div>
+              )}
+
+              <form onSubmit={handleCommentSubmit} className="space-y-4">
+                <div className="mb-4">
+                  <label htmlFor="comment-name" className="block text-sm font-medium text-foreground mb-2">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="comment-name"
+                    placeholder="Your name"
+                    value={commentForm.author_name}
+                    onChange={(e) => setCommentForm(prev => ({ ...prev, author_name: e.target.value }))}
+                    className="w-full px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="comment-email" className="block text-sm font-medium text-foreground mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="comment-email"
+                    placeholder="your.email@example.com"
+                    value={commentForm.author_email}
+                    onChange={(e) => setCommentForm(prev => ({ ...prev, author_email: e.target.value }))}
+                    className="w-full px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="comment-text" className="block text-sm font-medium text-foreground mb-2">
+                    Comment
+                  </label>
+                  <textarea
+                    id="comment-text"
+                    rows={4}
+                    placeholder={replyingTo ? "Write your reply..." : "What are your thoughts on this article?"}
+                    value={commentForm.content}
+                    onChange={(e) => setCommentForm(prev => ({ ...prev, content: e.target.value }))}
+                    className="w-full px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent resize-vertical"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors duration-200 font-medium disabled:opacity-50"
+                >
+                  {submitting ? 'Posting...' : replyingTo ? 'Post Reply' : 'Post Comment'}
+                </button>
+              </form>
+            </div>
+
+            {/* Existing Comments */}
+            {commentsLoading ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="flex items-center space-x-2 text-muted-foreground">
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <span>Loading comments...</span>
+                </div>
+              </div>
+            ) : organizedComments.length > 0 ? (
+              <div className="space-y-6">
+                <h4 className="text-lg font-semibold text-foreground mb-4">
+                  Comments ({comments.length})
+                </h4>
+
+                {organizedComments.map(comment => (
+                  <CommentComponent key={comment.id} comment={comment} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8">
+                <MessageCircle className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">No comments yet</h3>
+                <p className="text-muted-foreground">Be the first to share your thoughts!</p>
+              </div>
+            )}
+          </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   )
