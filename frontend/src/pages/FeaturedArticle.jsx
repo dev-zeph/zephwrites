@@ -39,21 +39,21 @@ const FeaturedArticle = () => {
 
           <header className="mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 font-playfair leading-tight">
-              Identification Through Differentiation
+              True Leadership
             </h1>
-            
+
             <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-              Understanding who you are requires being surrounded by what you are not.
+              Leadership is nothing more than a call to sacrifice.
             </p>
 
             <div className="flex flex-wrap items-center gap-6 text-muted-foreground text-sm mb-8">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
-                <span>January 6, 2026</span>
+                <span>March 13, 2026</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
-                <span>4 min read</span>
+                <span>6 min read</span>
               </div>
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
@@ -64,61 +64,91 @@ const FeaturedArticle = () => {
 
           <div className="mb-8">
             <img
-              src="Different.jpg"
-              alt="Identification Through Differentiation"
+              src="Leader.jpg"
+              alt="True Leadership"
               className="w-full aspect-video object-cover rounded-lg shadow-lg"
             />
           </div>
 
           <article className="prose prose-lg prose-gray max-w-none mb-12">
             <p className="text-xl text-gray-700 mb-6 leading-relaxed">
-              I never recognized myself as a particularly intelligent child. Throughout my academic life, my performance was fairly average, usually in the seventies across most cumulative results. At the same time, I knew I possessed strong traits of emotional intelligence. I was deeply in tune with my emotions, able to regulate how I felt, and capable of understanding the emotional states of others simply by being present with them or listening closely. Moods were contagious to me; I could often deduce how someone felt about me with very few words spoken.
+              Leadership and power are often thought to belong to the courageous and confident, and as long as a person has power, it seems within their right to exert it over their subordinates. I once had a somewhat similar perspective on power and leadership. But the Bible depicts a very different meaning—almost the exact opposite—of what it means to be a leader.
             </p>
-            
-            <p className="mb-6">
-              As a young teenager, I struggled with this perception of myself. I labeled myself as "too emotional" or soft. My emotional depth often conflicted with my idea of what it meant to be a "strong man." At the time, I did not understand that this sensitivity was my core area of competence, nor did I know how to channel it.
-            </p>
-            
-            <p className="mb-6">
-              Emotional intelligence is rarely placed in the spotlight. Children are typically acknowledged for academic achievement, not for subtlety, emotional depth, attunement, or intuition.
-            </p>
-            
-            <p className="mb-8">
-              This is understandable, as academics are often what distinguish one child from another; they serve as the conventional measure of "smartness." Parents commonly follow this path, prioritizing academic success over other spheres and comparing children based on grades and academic prowess.
-            </p>
-            
-            <h2 className="text-2xl font-bold mt-8 mb-4">The Light Within</h2>
-            
-            <p className="mb-6">
-              I attribute the discovery of my emotional intelligence and intuition to the realization that core academics may not have been my primary strength. The dimness around me led me inward, toward the part of myself that shone brightest. I am now learning to hone that light to help others who are still in the dark.
-            </p>
-            
+
             <blockquote className="border-l-4 border-primary pl-6 italic text-gray-600 my-8 text-lg">
-              "If you ever feel that you do not 'measure up' in one sphere, remember that you likely possess another area in which you are above average; perhaps not where you expect, but certainly within you."
+              "Now the Lord said to Samuel, 'You have mourned long enough for Saul. I have rejected him as king of Israel, so fill your flask with olive oil and go to Bethlehem. Find a man named Jesse who lives there, for I have selected one of his sons to be my king.' But Samuel asked, 'How can I do that? If Saul hears about it, he will kill me.' 'Take a heifer with you,' the Lord replied, 'and say that you have come to make a sacrifice to the Lord. Invite Jesse to the sacrifice, and I will show you which of his sons to anoint for me.'" —1 Samuel 16:1-3 (NLT)
             </blockquote>
-            
-            <h2 className="text-2xl font-bold mt-8 mb-4">The Power of Contrast</h2>
-            
+
             <p className="mb-6">
-              Identification is impossible when a subject is indistinguishable from its surroundings. When there is no contrast, definition becomes difficult. Identification only becomes possible when a subject is surrounded by what it is not.
+              In the passage above, we see an excerpt from the story of David. After Saul was rejected as king of Israel, God told Samuel to prepare his oil and anoint the next king. Samuel feared that the current king, Saul, would try to kill him if he heard Samuel was going to anoint a new king. So God instructed Samuel to take a heifer and say he was going to "make a sacrifice to the Lord."
             </p>
-            
+
             <p className="mb-6">
-              In the same way, understanding who you are requires being surrounded by what you are not; circumstances, challenges, and people that contrast with you. To know what you are, you must first distinguish what you are not. The first step toward any desired outcome is recognizing that you are not currently in that state.
+              Quite deceptive, isn't it? I always wondered why God was not more straightforward—why He didn't simply tell Samuel to take the horn of oil and boldly declare he was going to anoint the next king, instead of appearing as though he were going to offer a sacrifice.
             </p>
-            
+
+            <p className="mb-4 font-medium text-lg">
+              Then it clicked.
+            </p>
+            <p className="mb-4 font-medium text-lg">
+              The sacrifice was not the heifer.
+            </p>
+            <p className="mb-8 font-bold text-xl text-foreground">
+              The sacrifice was the new king—David.
+            </p>
+
             <p className="mb-8">
-              Acknowledging the challenges around you is evidence that, at your core, you know you do not belong there forever; it reflects an understanding that you are capable of something better.
+              David himself would become the offering to God for the people of Israel. True, God-ordained leadership is a call to sacrifice.
             </p>
-            
-            <h2 className="text-2xl font-bold mt-8 mb-4">Embracing Your Uniqueness</h2>
-            
+
+            <h2 className="text-2xl font-bold mt-8 mb-4">The Example of Jesus</h2>
+
             <p className="mb-6">
-              Therefore, never allow your surrounding circumstances to define your capabilities or your identity. True self-awareness comes from recognizing the contrast between yourself and your environment, and understanding that your potential is not determined solely by external factors, but by your unique qualities and characteristics.
+              It makes sense, doesn't it? Jesus demonstrated this same unorthodox idea of leadership:
             </p>
-            
-            <p className="text-lg font-medium">
-              By recognizing what you are not, you can more fully understand and embrace what makes you distinct, rather than conforming to limiting beliefs.
+
+            <blockquote className="border-l-4 border-primary pl-6 italic text-gray-600 my-8 text-lg">
+              "Jesus knew that the Father had given him authority over everything and that he had come from God and would return to God. So he got up from the table, took off his robe, wrapped a towel around his waist, and poured water into a basin. Then he began to wash the disciples' feet, drying them with the towel he had around him." —John 13:3-5 (NLT)
+            </blockquote>
+
+            <p className="mb-8">
+              As Jesus acknowledged that all power in heaven and on earth had been given to Him, He knelt and washed the feet of His disciples. It is absolutely unheard of that the God of all flesh—the most powerful, all-knowing, eternal being—would kneel to wash the feet of those He created. There is no God like Jesus.
+            </p>
+
+            <h2 className="text-2xl font-bold mt-8 mb-4">Leadership as Service</h2>
+
+            <p className="mb-6">
+              This is precisely what Jesus taught.
+            </p>
+
+            <blockquote className="border-l-4 border-primary pl-6 italic text-gray-600 my-8 text-lg">
+              "Jesus called them together and said, 'You know that the rulers of the Gentiles lord it over them, and their high officials exercise authority over them. Not so with you. Instead, whoever wants to become great among you must be your servant, and whoever wants to be first must be your slave—just as the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.'" —Matthew 20:25-28 (NIV)
+            </blockquote>
+
+            <p className="mb-8">
+              To Jesus, true leadership, power, and greatness are defined by service. Leadership is nothing more than a call to sacrifice. Jesus—the promised Savior, King of the world, the most powerful of all—did not come to conquer the world, but to serve it, ultimately sacrificing His life on the cross for the sins of humanity.
+            </p>
+
+            <h2 className="text-2xl font-bold mt-8 mb-4">A Call to Change</h2>
+
+            <p className="mb-6">
+              How much would our world change if our leaders adopted Christ's perspective on power? If they understood that the core of leadership is servitude—not the right to exert power or misuse authority over others.
+            </p>
+
+            <p className="mb-6">
+              How safe would marriages in Christian families be if wives understood that the husband's leadership means he is called to serve and lay down his life for her? How strong would marriages be if husbands understood that being the "head of the family" does not grant them the right to rule over their household, but instead calls them to sacrifice daily for those they love? Husbands, not wives, are the true servants in the family.
+            </p>
+
+            <p className="mb-6 font-medium text-lg">
+              Our perspective has to change.
+            </p>
+
+            <p className="mb-6">
+              The leaders of tomorrow must see leadership as an opportunity to serve people and improve the lives of those who are struggling. Power should not be desired as a means to steal, control, or accumulate resources, but as an opportunity to positively impact the lives of others.
+            </p>
+
+            <p className="text-xl font-bold text-foreground">
+              Let the one who desires greatness become a servant first.
             </p>
           </article>
 

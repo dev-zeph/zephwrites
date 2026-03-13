@@ -161,7 +161,7 @@ function MainSite() {
                       <div className="flex flex-col md:flex-row gap-8 items-center">
                         <div className="w-full md:w-1/2 h-64 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center relative overflow-hidden">
                           <img 
-                            src="Different.jpg"
+                            src="Leader.jpg"
                             alt="Identification Through Differentiation"
                             className="w-full h-full object-cover rounded-lg"
                           />
@@ -171,10 +171,10 @@ function MainSite() {
                         </div>
                         <div className="w-full md:w-1/2 flex flex-col justify-center">
                           <h3 className="text-3xl font-bold mb-4 group-hover:text-primary transition-colors text-gray-900 leading-tight">
-                            Identification Through Differentiation
+                            True Leadership.
                           </h3>
                           <p className="text-gray-600 mb-6 text-lg leading-relaxed line-clamp-4">
-                            Understanding who you are requires being surrounded by what you are not. A reflection on emotional intelligence and finding your unique strengths.
+                            Being a leader is not about being in charge. It's about taking care of those in your charge.
                           </p>
                           <div className="flex items-center gap-6 text-sm text-gray-500">
                             <span className="flex items-center gap-1">
