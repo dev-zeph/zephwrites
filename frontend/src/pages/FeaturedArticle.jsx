@@ -269,7 +269,7 @@ const FeaturedArticle = () => {
             </p>
 
             <p className="mb-6">
-              How safe would marriages in Christian families be if wives understood that the husband's leadership means he is called to serve and lay down his life for her? How strong would marriages be if husbands understood that being the "head of the family" does not grant them the right to rule over their household, but instead calls them to sacrifice daily for those they love? Husbands, not wives, are the true servants in the family.
+              How safe would marriages in Christian families be if wives understood that the husband's leadership means he is called to serve and lay down his life for her? How strong would marriages be if husbands understood that being the "head of the family" does not grant them the right to Lord over their household, but instead calls them to sacrifice daily for those they love? Husbands, not wives, are the true servants in the family.
             </p>
 
             <p className="mb-6 font-medium text-lg">
