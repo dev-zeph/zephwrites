@@ -1,15 +1,55 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { PlusCircle, FileText, Users, BarChart3, Settings, LogOut, Edit, Trash2, Eye, Mail } from 'lucide-react'
 import AdminPanel from './AdminPanel'
 import EmailTestPanel from './EmailTestPanel'
-import { useBlogs } from '../hooks/useBlog'
 import { blogService } from '../lib/blogService'
 
 const AdminDashboard = ({ onLogout }) => {
   const [activeTab, setActiveTab] = useState('overview')
   const [showCreatePost, setShowCreatePost] = useState(false)
-  
-  const { blogs, loading: blogsLoading } = useBlogs(1, 50) // Load more posts for admin view
+  const [editingBlog, setEditingBlog] = useState(null)
+  const [blogs, setBlogs] = useState([])
+  const [blogsLoading, setBlogsLoading] = useState(false)
+
+  const loadBlogs = useCallback(async () => {
+    try {
+      setBlogsLoading(true)
+      const result = await blogService.getAllBlogs(1, 100)
+      setBlogs(result.blogs || [])
+    } catch (err) {
+      console.error('Failed to load blogs:', err)
+    } finally {
+      setBlogsLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    loadBlogs()
+  }, [loadBlogs])
+
+  const handleEditBlog = (blog) => {
+    setEditingBlog(blog)
+    setShowCreatePost(true)
+  }
+
+  const handleDeleteBlog = async (blog) => {
+    if (!confirm(`Are you sure you want to delete "${blog.title}"? This action cannot be undone.`)) return
+    try {
+      await blogService.deleteBlog(blog.id)
+      loadBlogs()
+    } catch (err) {
+      console.error('Failed to delete blog:', err)
+    }
+  }
+
+  const handlePanelClose = () => {
+    setShowCreatePost(false)
+    setEditingBlog(null)
+  }
+
+  const handlePanelSuccess = () => {
+    loadBlogs()
+  }
 
   const handleLogout = () => {
     sessionStorage.removeItem('zephwrites_admin')
@@ -192,10 +232,18 @@ const AdminDashboard = ({ onLogout }) => {
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
-                              <button className="p-2 text-muted-foreground hover:text-foreground rounded-lg">
+                              <button
+                                onClick={() => handleEditBlog(blog)}
+                                className="p-2 text-muted-foreground hover:text-foreground rounded-lg"
+                                title="Edit post"
+                              >
                                 <Edit className="w-4 h-4" />
                               </button>
-                              <button className="p-2 text-muted-foreground hover:text-red-600 rounded-lg">
+                              <button
+                                onClick={() => handleDeleteBlog(blog)}
+                                className="p-2 text-muted-foreground hover:text-red-600 rounded-lg"
+                                title="Delete post"
+                              >
                                 <Trash2 className="w-4 h-4" />
                               </button>
                             </div>
@@ -262,10 +310,18 @@ const AdminDashboard = ({ onLogout }) => {
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
-                              <button className="p-2 text-muted-foreground hover:text-foreground rounded-lg">
+                              <button
+                                onClick={() => handleEditBlog(blog)}
+                                className="p-2 text-muted-foreground hover:text-foreground rounded-lg"
+                                title="Edit post"
+                              >
                                 <Edit className="w-4 h-4" />
                               </button>
-                              <button className="p-2 text-muted-foreground hover:text-red-600 rounded-lg">
+                              <button
+                                onClick={() => handleDeleteBlog(blog)}
+                                className="p-2 text-muted-foreground hover:text-red-600 rounded-lg"
+                                title="Delete post"
+                              >
                                 <Trash2 className="w-4 h-4" />
                               </button>
                             </div>
@@ -304,9 +360,13 @@ const AdminDashboard = ({ onLogout }) => {
         </div>
       </div>
 
-      {/* Create Post Modal */}
+      {/* Create / Edit Post Modal */}
       {showCreatePost && (
-        <AdminPanel onClose={() => setShowCreatePost(false)} />
+        <AdminPanel
+          onClose={handlePanelClose}
+          blogToEdit={editingBlog}
+          onSuccess={handlePanelSuccess}
+        />
       )}
     </div>
   )

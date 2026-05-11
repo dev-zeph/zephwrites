@@ -5,7 +5,7 @@ import { Navbar } from '../components/Navbar'
 import { Footer } from '../components/Footer'
 import { featuredCommentService } from '../lib/blogService'
 
-const ARTICLE_SLUG = 'true-leadership'
+const ARTICLE_SLUG = 'baghdad-to-tehran'
 
 const FeaturedArticle = () => {
   const navigate = useNavigate()
@@ -172,21 +172,21 @@ const FeaturedArticle = () => {
 
           <header className="mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 font-playfair leading-tight">
-              True Leadership
+              Death in Tehran
             </h1>
 
             <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-              Leadership is nothing more than a call to sacrifice.
+              Are you running from Baghdad to Tehran?
             </p>
 
             <div className="flex flex-wrap items-center gap-6 text-muted-foreground text-sm mb-8">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
-                <span>March 13, 2026</span>
+                <span>May 11, 2026</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
-                <span>6 min read</span>
+                <span>4 min read</span>
               </div>
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
@@ -197,91 +197,37 @@ const FeaturedArticle = () => {
 
           <div className="mb-8">
             <img
-              src="Leader.jpg"
-              alt="True Leadership"
+              src="Tehran.jpg"
+              alt="Death in Tehran"
               className="w-full aspect-video object-cover rounded-lg shadow-lg"
             />
           </div>
 
           <article className="prose prose-lg prose-gray max-w-none mb-12">
             <p className="text-xl text-gray-700 mb-6 leading-relaxed">
-              Leadership and power are often thought to belong to the courageous and confident, and as long as a person has power, it seems within their right to exert it over their subordinates. I once had a somewhat similar perspective on power and leadership. But the Bible depicts a very different meaning—almost the exact opposite—of what it means to be a leader.
-            </p>
-
-            <blockquote className="border-l-4 border-primary pl-6 italic text-gray-600 my-8 text-lg">
-              "Now the Lord said to Samuel, 'You have mourned long enough for Saul. I have rejected him as king of Israel, so fill your flask with olive oil and go to Bethlehem. Find a man named Jesse who lives there, for I have selected one of his sons to be my king.' But Samuel asked, 'How can I do that? If Saul hears about it, he will kill me.' 'Take a heifer with you,' the Lord replied, 'and say that you have come to make a sacrifice to the Lord. Invite Jesse to the sacrifice, and I will show you which of his sons to anoint for me.'" —1 Samuel 16:1-3 (NLT)
-            </blockquote>
-
-            <p className="mb-6">
-              In the passage above, we see an excerpt from the story of David. After Saul was rejected as king of Israel, God told Samuel to prepare his oil and anoint the next king. Samuel feared that the current king, Saul, would try to kill him if he heard Samuel was going to anoint a new king. So God instructed Samuel to take a heifer and say he was going to "make a sacrifice to the Lord."
+              In an illustration of an old folklore, a master and his slave lived in Baghdad. One night, the slave approached the master, horrified, asking for his fastest horse. The slave claimed he had met Death, and intended to flee to the city of Tehran. The master immediately obliged, granting the slave's request and giving him his fastest horse. The slave mounted the horse and began his journey to Tehran. Later that day, the master himself met Death. The master asked, "What did you do to confront my slave?" Death replied, "I did not confront your slave. I was only surprised to meet him in Baghdad yesterday, when he was destined to meet his inevitable fate in Tehran."
             </p>
 
             <p className="mb-6">
-              Quite deceptive, isn't it? I always wondered why God was not more straightforward—why He didn't simply tell Samuel to take the horn of oil and boldly declare he was going to anoint the next king, instead of appearing as though he were going to offer a sacrifice.
-            </p>
-
-            <p className="mb-4 font-medium text-lg">
-              Then it clicked.
-            </p>
-            <p className="mb-4 font-medium text-lg">
-              The sacrifice was not the heifer.
-            </p>
-            <p className="mb-8 font-bold text-xl text-foreground">
-              The sacrifice was the new king—David.
+              This story portrays the futility of life, the inevitability of fate, and the vast randomness of a world in which no one can truly be certain of anything. <strong>In a desperate attempt to save his life, the slave ran from his place of safety, straight toward the very city where he was destined to die.</strong>
             </p>
 
             <p className="mb-8">
-              David himself would become the offering to God for the people of Israel. True, God-ordained leadership is a call to sacrifice.
+              In retrospect, maybe the things I run from are the very experiences meant to save me, and the things I so desperately believe I need may be what end my life, or cause harm in ways not so evidently seen. In every situation we find ourselves, we must consciously pause to ask whether we are, in fact, running from Baghdad to Tehran. <strong>Maybe where you are already standing holds the salvation you never knew you needed.</strong>
             </p>
 
-            <h2 className="text-2xl font-bold mt-8 mb-4">The Example of Jesus</h2>
+            <h2 className="text-2xl font-bold mt-8 mb-4">A Hand Behind the Scenes</h2>
 
             <p className="mb-6">
-              It makes sense, doesn't it? Jesus demonstrated this same unorthodox idea of leadership:
+              In the same vein, I believe the uncertainty of life is itself a certain pointer to a hand behind the scenes. For the complexities of life are too vast, the intricacies too deep, that an offset of just a margin can trigger an avalanche of consequences. Yet we humans so desperately try to play God in our own lives — even when we cannot grasp the slightest of things, nor comprehend in any way the consequences of what we desire.
             </p>
-
-            <blockquote className="border-l-4 border-primary pl-6 italic text-gray-600 my-8 text-lg">
-              "Jesus knew that the Father had given him authority over everything and that he had come from God and would return to God. So he got up from the table, took off his robe, wrapped a towel around his waist, and poured water into a basin. Then he began to wash the disciples' feet, drying them with the towel he had around him." —John 13:3-5 (NLT)
-            </blockquote>
 
             <p className="mb-8">
-              As Jesus acknowledged that all power in heaven and on earth had been given to Him, He knelt and washed the feet of His disciples. It is absolutely unheard of that the God of all flesh—the most powerful, all-knowing, eternal being—would kneel to wash the feet of those He created. There is no God like Jesus.
-            </p>
-
-            <h2 className="text-2xl font-bold mt-8 mb-4">Leadership as Service</h2>
-
-            <p className="mb-6">
-              This is precisely what Jesus taught.
-            </p>
-
-            <blockquote className="border-l-4 border-primary pl-6 italic text-gray-600 my-8 text-lg">
-              "Jesus called them together and said, 'You know that the rulers of the Gentiles lord it over them, and their high officials exercise authority over them. Not so with you. Instead, whoever wants to become great among you must be your servant, and whoever wants to be first must be your slave—just as the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.'" —Matthew 20:25-28 (NIV)
-            </blockquote>
-
-            <p className="mb-8">
-              To Jesus, true leadership, power, and greatness are defined by service. Leadership is nothing more than a call to sacrifice. Jesus—the promised Savior, King of the world, the most powerful of all—did not come to conquer the world, but to serve it, ultimately sacrificing His life on the cross for the sins of humanity.
-            </p>
-
-            <h2 className="text-2xl font-bold mt-8 mb-4">A Call to Change</h2>
-
-            <p className="mb-6">
-              How much would our world change if our leaders adopted Christ's perspective on power? If they understood that the core of leadership is servitude—not the right to exert power or misuse authority over others.
-            </p>
-
-            <p className="mb-6">
-              How safe would marriages in Christian families be if wives understood that the husband's leadership means he is called to serve and lay down his life for her? How strong would marriages be if husbands understood that being the "head of the family" does not grant them the right to Lord over their household, but instead calls them to sacrifice daily for those they love? Husbands, not wives, are the true servants in the family.
-            </p>
-
-            <p className="mb-6 font-medium text-lg">
-              Our perspective has to change.
-            </p>
-
-            <p className="mb-6">
-              The leaders of tomorrow must see leadership as an opportunity to serve people and improve the lives of those who are struggling. Power should not be desired as a means to steal, control, or accumulate resources, but as an opportunity to positively impact the lives of others.
+              <strong>The very fact that life is so uncertain, and that we exist as we are, is a certain pointer that the universe does indeed have a man behind the scenes.</strong>
             </p>
 
             <p className="text-xl font-bold text-foreground">
-              Let the one who desires greatness become a servant first.
+              Are you running from Baghdad to Tehran?
             </p>
           </article>
 

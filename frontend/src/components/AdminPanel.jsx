@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Save, Upload, Eye, X, Plus, Image as ImageIcon, Edit, Trash2, Calendar, Search } from 'lucide-react'
 import { blogService } from '../lib/blogService'
 
-const AdminPanel = ({ onClose }) => {
+const AdminPanel = ({ onClose, blogToEdit = null, onSuccess }) => {
   const [activeTab, setActiveTab] = useState('create')
   const [editingBlog, setEditingBlog] = useState(null)
   const [blogs, setBlogs] = useState([])
@@ -26,6 +26,25 @@ const AdminPanel = ({ onClose }) => {
   const [error, setError] = useState('')
   const [imageUploading, setImageUploading] = useState(false)
   const [imagePreview, setImagePreview] = useState('')
+
+  // Pre-fill form when opened from dashboard with a blog to edit
+  useEffect(() => {
+    if (blogToEdit) {
+      setEditingBlog(blogToEdit)
+      setFormData({
+        title: blogToEdit.title || '',
+        content: blogToEdit.content || '',
+        excerpt: blogToEdit.excerpt || '',
+        author_name: blogToEdit.author_name || 'Zephaniah Chizulu',
+        category: blogToEdit.blog_topic || '',
+        tags: blogToEdit.tags || [],
+        featured_image: blogToEdit.featured_image_url || '',
+        is_published: blogToEdit.is_published || false,
+        is_featured: blogToEdit.is_featured || false
+      })
+      setImagePreview(blogToEdit.featured_image_url || '')
+    }
+  }, [blogToEdit])
 
   // Load blogs when component mounts or when switching to edit tab
   useEffect(() => {
@@ -92,7 +111,8 @@ const AdminPanel = ({ onClose }) => {
     try {
       await blogService.deleteBlog(blogId)
       setSuccess('Blog deleted successfully!')
-      loadBlogs() // Refresh the list
+      loadBlogs()
+      onSuccess?.()
     } catch (error) {
       setError('Failed to delete blog: ' + error.message)
     }
@@ -222,10 +242,12 @@ const AdminPanel = ({ onClose }) => {
         setSuccess('Blog post updated successfully!')
         handleCancelEdit()
         loadBlogs() // Refresh the blogs list
+        onSuccess?.()
       } else {
         // Create new blog
         await blogService.createBlog(blogData)
         setSuccess('Blog post created successfully!')
+        onSuccess?.()
         
         // Reset form
         setFormData({

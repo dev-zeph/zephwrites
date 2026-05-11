@@ -160,9 +160,9 @@ function MainSite() {
                     >
                       <div className="flex flex-col md:flex-row gap-8 items-center">
                         <div className="w-full md:w-1/2 h-64 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center relative overflow-hidden">
-                          <img 
-                            src="Leader.jpg"
-                            alt="Identification Through Differentiation"
+                          <img
+                            src="Tehran.jpg"
+                            alt="Death in Tehran"
                             className="w-full h-full object-cover rounded-lg"
                           />
                           <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -171,10 +171,10 @@ function MainSite() {
                         </div>
                         <div className="w-full md:w-1/2 flex flex-col justify-center">
                           <h3 className="text-3xl font-bold mb-4 group-hover:text-primary transition-colors text-gray-900 leading-tight">
-                            True Leadership.
+                            Death in Tehran.
                           </h3>
-                          <p className="text-gray-600 mb-6 text-lg leading-relaxed line-clamp-4">
-                            Being a leader is not about being in charge. It's about taking care of those in your charge.
+                          <p className="text-gray-600 mb-6 text-lg leading-relaxed">
+                            The futility of controlling the uncertain.
                           </p>
                           <div className="flex items-center gap-6 text-sm text-gray-500">
                             <span className="flex items-center gap-1">
@@ -183,11 +183,11 @@ function MainSite() {
                             </span>
                             <span className="flex items-center gap-1">
                               <span>📅</span>
-                              {new Date().toLocaleDateString()}
+                              May 11, 2026
                             </span>
                             <span className="flex items-center gap-1">
                               <span>🏷️</span>
-                              Personal Growth
+                              Reflection
                             </span>
                           </div>
                         </div>
