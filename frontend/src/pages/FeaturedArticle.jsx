@@ -5,7 +5,7 @@ import { Navbar } from '../components/Navbar'
 import { Footer } from '../components/Footer'
 import { featuredCommentService } from '../lib/blogService'
 
-const ARTICLE_SLUG = 'baghdad-to-tehran'
+const ARTICLE_SLUG = 'mortality-greatest-treasure'
 
 const FeaturedArticle = () => {
   const navigate = useNavigate()
@@ -172,21 +172,21 @@ const FeaturedArticle = () => {
 
           <header className="mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 font-playfair leading-tight">
-              Death in Tehran
+              Gift of Mortality
             </h1>
 
             <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-              Are you running from Baghdad to Tehran?
+              That I do not know tomorrow makes me cherish today.
             </p>
 
             <div className="flex flex-wrap items-center gap-6 text-muted-foreground text-sm mb-8">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
-                <span>May 11, 2026</span>
+                <span>June 17, 2026</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
-                <span>4 min read</span>
+                <span>2 min read</span>
               </div>
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
@@ -197,37 +197,65 @@ const FeaturedArticle = () => {
 
           <div className="mb-8">
             <img
-              src="Tehran.jpg"
-              alt="Death in Tehran"
+              src="Eternity.webp"
+              alt="Gift of Mortality"
               className="w-full aspect-video object-cover rounded-lg shadow-lg"
             />
           </div>
 
           <article className="prose prose-lg prose-gray max-w-none mb-12">
             <p className="text-xl text-gray-700 mb-6 leading-relaxed">
-              In an illustration of an old folklore, a master and his slave lived in Baghdad. One night, the slave approached the master, horrified, asking for his fastest horse. The slave claimed he had met Death, and intended to flee to the city of Tehran. The master immediately obliged, granting the slave's request and giving him his fastest horse. The slave mounted the horse and began his journey to Tehran. Later that day, the master himself met Death. The master asked, "What did you do to confront my slave?" Death replied, "I did not confront your slave. I was only surprised to meet him in Baghdad yesterday, when he was destined to meet his inevitable fate in Tehran."
+              Mortality is my greatest treasure. A life where I am excited, or anxious of, or ultimately feel any emotion of anticipation — because I do not know what is next — is a gift.
             </p>
 
             <p className="mb-6">
-              This story portrays the futility of life, the inevitability of fate, and the vast randomness of a world in which no one can truly be certain of anything. <strong>In a desperate attempt to save his life, the slave ran from his place of safety, straight toward the very city where he was destined to die.</strong>
+              That I do not know tomorrow makes me cherish today, and push towards a cause, as though there is no innate inevitability to life, as though fate is not unchangeable, as though neither time nor death is immutable.
             </p>
 
             <p className="mb-8">
-              In retrospect, maybe the things I run from are the very experiences meant to save me, and the things I so desperately believe I need may be what end my life, or cause harm in ways not so evidently seen. In every situation we find ourselves, we must consciously pause to ask whether we are, in fact, running from Baghdad to Tehran. <strong>Maybe where you are already standing holds the salvation you never knew you needed.</strong>
+              That I do not know whether I will stumble and still fail is the very core of my inspiration to try one more time. That I do not know when the cold severance of death strikes is the constant reminder to cherish my time with loved ones. That I know I am mortal is my motivation to live, love, and learn.
             </p>
 
-            <h2 className="text-2xl font-bold mt-8 mb-4">A Hand Behind the Scenes</h2>
+            <h2 className="text-2xl font-bold mt-8 mb-4">If Eternity Were True</h2>
 
             <p className="mb-6">
-              In the same vein, I believe the uncertainty of life is itself a certain pointer to a hand behind the scenes. For the complexities of life are too vast, the intricacies too deep, that an offset of just a margin can trigger an avalanche of consequences. Yet we humans so desperately try to play God in our own lives — even when we cannot grasp the slightest of things, nor comprehend in any way the consequences of what we desire.
+              But even if the opposite were true — if I were eternal — if any form within me, perhaps my soul, were eternal, or if I am guided by a sentient, eternal being, wouldn't it mean that I have never made a "wrong decision"?
+            </p>
+
+            <p className="mb-6">
+              The only feasible comprehension of eternity is that its time is non-linear — to the point of no beginning or end — an unending circular continuum, where the future is as much of a reference as the past, where I can see both the future and the past right here in the present.
+            </p>
+
+            <p className="mb-6">
+              It would mean that the eternity hidden somewhere deep in me led me to experience situations fully, knowing the futility of the outcome, just for the honor of having experienced it in the first place.
+            </p>
+
+            <p className="mb-6">
+              If an eternity exists somewhere, or an eternity has an influence over my life, then there is no difficult circumstance or challenge.
             </p>
 
             <p className="mb-8">
-              <strong>The very fact that life is so uncertain, and that we exist as we are, is a certain pointer that the universe does indeed have a man behind the scenes.</strong>
+              Maybe before time began, I — or this sentient, eternal being — saw it all play out and chose it. Maybe my soul chose to love, even knowing one day I surely will lose. Maybe I chose this path of obstruction intentionally, even when I think I am unlucky to stumble.
+            </p>
+
+            <p className="mb-8">
+              Maybe the true essence is not winning, but being honored to have experienced life, even knowing it will all end someday.
+            </p>
+
+            <p className="mb-6">
+              The honor is not winning the battle, for death captures all — even the valiant, the mighty, and the witted.
+            </p>
+
+            <p className="mb-6">
+              The honor is stepping into the arena, marred with sweat, blood, and tears, falling and trying again, listening to the chants of the supporters at the home end and blocking out the noise from the opposing end.
+            </p>
+
+            <p className="mb-8">
+              The honor is fighting through the dusty battlefield, raising the sword of might even when the battle seems futile.
             </p>
 
             <p className="text-xl font-bold text-foreground">
-              Are you running from Baghdad to Tehran?
+              The point has always been that I can claim to have experienced life — its challenges, its love and grief, the joy of the mountain tops and the loneliness in the valleys — not that I may win in the end.
             </p>
           </article>
 
